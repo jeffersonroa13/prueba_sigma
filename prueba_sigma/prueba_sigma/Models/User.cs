@@ -14,7 +14,7 @@ namespace prueba_sigma.Models
         public int Id { get; set;  }
         public string Name { get; set;  }
         public string Email { get; set; }
-        public bool State { get; set;  }
+        public string State { get; set;  }
         public string City { get; set;  }
 
     }

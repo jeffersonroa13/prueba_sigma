@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using prueba_sigma.Infraestructure;
+using prueba_sigma.Models;
 
 namespace prueba_sigma.Controllers
 {
@@ -18,5 +19,11 @@ namespace prueba_sigma.Controllers
             return new CommandResult(true, "success");
         }
 
+
+        [HttpPost("sendData")]
+        public CommandResult sendData(User user)
+        {
+            return new CommandResult(true, "Información almacenada correctamente");
+        }
     }
 }
