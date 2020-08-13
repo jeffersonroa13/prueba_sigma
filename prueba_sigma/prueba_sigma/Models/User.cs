@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace prueba_sigma.Models
 {
-    [Table("Contacts")]
+    [Table("contacts")]
     public class User
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("id_contacts")]
+        [Column("id")]
         public int Id { get; set;  }
-        [Column("Name")]
+        [Column("name")]
         public string Name { get; set;  }
-        [Column("Email")]
+        [Column("email")]
         public string Email { get; set; }
-        [Column("State")]
+        [Column("state")]
         public string State { get; set;  }
-        [Column("City")]
+        [Column("city")]
         public string City { get; set;  }
 
     }

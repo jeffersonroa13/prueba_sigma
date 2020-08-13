@@ -33,7 +33,7 @@ namespace prueba_sigma.Controllers
         {
             context.Users.Add(user);
             context.SaveChanges();
-            return new CommandResult(true, "Información almacenada correctamente");
+            return new CommandResult(true, "Tu información ha sido recibida satisfactoriamente");
         }
     }
 }
