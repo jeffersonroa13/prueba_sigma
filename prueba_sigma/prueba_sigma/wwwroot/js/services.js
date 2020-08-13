@@ -8,14 +8,17 @@
 
 
 $(document).ready(function () {
-
     $.get("Cities/States", function (data, status) {
         if (data["result"]) {
             data["data"].forEach(item => {
                 $('#state').append(new Option(item, item))
             });
         } else {
-            alert(data["message"]);
+            swal({
+                title: "Aviso",
+                text: data["message"],
+                icon: "error",
+            });
         }
     });
 });
@@ -29,7 +32,11 @@ function getCitiesByState() {
                 $('#city').append(new Option(item, item))
             });
         } else {
-            alert(data["message"]);
+            swal({
+                title: "Aviso",
+                text: data["message"],
+                icon: "error",
+            });
         }
     });
 }
@@ -42,8 +49,22 @@ function validateForm(me) {
     me.city = $("#city").val();
     me.state = $("#state").val();
     if (me.name.length == 0 || me.email.length == 0 || me.city.length == 0 || me.state.length == 0) return false;
-    if (me.name.length > 50) return false;
-    if (me.name.length > 30) return false;
+    if (me.name.length > 50) {
+        swal({
+            title: "Aviso",
+            text: "El maximo del nombre es de 50 caracteres",
+            icon: "warning",
+        });
+        return false;
+    }
+    if (me.email.length > 30) {
+        swal({
+            title: "Aviso",
+            text: "El maximo del correo es de 30 caracteres",
+            icon: "warning",
+        });
+        return false;
+    }
     return true;
 }
 
@@ -53,6 +74,7 @@ function sendData()
 {
     let me = Object.create(user);
     if (this.validateForm(me)) {
+        $("#button_send").attr('disabled', true);
         jQuery.ajax({
             url: "/user/sendData",
             type: "POST",
@@ -60,15 +82,28 @@ function sendData()
             dataType: "json",
             data: JSON.stringify(me),
             success: function (url, data, callback) {
-                if (data["result"]) {
-
+                $("#button_send").attr('disabled', false);
+                if (url["result"]) {
+                    swal({
+                        title: "Aviso",
+                        text: url["message"],
+                        icon: "success",
+                    });
                 } else {
-                    alert(data["result"]);
+                    swal({
+                        title: "Aviso",
+                        text: url["message"],
+                        icon: "error",
+                    });
                 }
             }
         });
     } else
     {
-        alert("completa la infomación del formulario");
+        swal({
+            title: "Aviso",
+            text: "Completa los campos",
+            icon: "warning",
+        });
     }
 }
