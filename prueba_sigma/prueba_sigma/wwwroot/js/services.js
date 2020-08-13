@@ -1,4 +1,13 @@
-﻿$(document).ready(function () {
+﻿const user =
+{
+    state: "",
+    city: "",
+    name: "",
+    email: "",
+}
+
+
+$(document).ready(function () {
 
     $.get("Cities/States", function (data, status) {
         if (data["result"]) {
@@ -10,14 +19,6 @@
         }
     });
 });
-
-const user =
-{
-    state: "",
-    city:"",
-    name: "",
-    email:"",
-}
 
 function getCitiesByState() {
     let state = $("#state").val();
@@ -41,9 +42,10 @@ function validateForm(me) {
     me.city = $("#city").val();
     me.state = $("#state").val();
     if (me.name.length == 0 || me.email.length == 0 || me.city.length == 0 || me.state.length == 0) return false;
+    if (me.name.length > 50) return false;
+    if (me.name.length > 30) return false;
     return true;
 }
-
 
 
 
