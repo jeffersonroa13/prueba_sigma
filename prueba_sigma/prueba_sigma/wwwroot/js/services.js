@@ -1,9 +1,36 @@
-﻿const user =
+﻿$(document).ready(function () {
+
+    $.get("Cities/States", function (data, status) {
+        if (data["result"]) {
+            data["data"].forEach(item => {
+                $('#state').append(new Option(item, item))
+            });
+        } else {
+            alert(data["message"]);
+        }
+    });
+});
+
+const user =
 {
     state: "",
     city:"",
     name: "",
     email:"",
+}
+
+function getCitiesByState() {
+    let state = $("#state").val();
+    $('#city').children('option:not(:first)').remove();
+    $.get(`Cities/GetCitiesByStateId?state=${state}`, function (data, status) {
+        if (data["result"]) {
+            data["data"].forEach(item => {
+                $('#city').append(new Option(item, item))
+            });
+        } else {
+            alert(data["message"]);
+        }
+    });
 }
 
 
@@ -16,6 +43,8 @@ function validateForm(me) {
     if (me.name.length == 0 || me.email.length == 0 || me.city.length == 0 || me.state.length == 0) return false;
     return true;
 }
+
+
 
 
 function sendData()
@@ -38,6 +67,6 @@ function sendData()
         });
     } else
     {
-        console.log("completa la infomación del formulario");
+        alert("completa la infomación del formulario");
     }
 }

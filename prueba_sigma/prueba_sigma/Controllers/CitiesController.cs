@@ -19,6 +19,7 @@ namespace prueba_sigma.Controllers
         {
             DepartmentService service = new DepartmentService();
             var states = await service.getStates();
+            if (states == null) return new CommandResult<List<string>>(false, "El servicio para consumir los departamentos no esta disponible", null);
 
             return new CommandResult<List<string>>(true, "success", states.Keys.ToList());
         }
@@ -28,6 +29,7 @@ namespace prueba_sigma.Controllers
         {
             DepartmentService service = new DepartmentService();
             Dictionary<string, string[]> states = await service.getStates();
+            if (states == null) return new CommandResult<List<string>>(false, "El servicio para consumir los departamentos no esta disponible", null);
             if(states.ContainsKey(state))
             {
                 return new CommandResult<List<string>>(true, "success", states[state].ToList());

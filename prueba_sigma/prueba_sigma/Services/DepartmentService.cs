@@ -10,9 +10,9 @@ namespace prueba_sigma.Services
 {
     public class DepartmentService
     {
+        string endpoint = "https://sigma-studios.s3-us-west-2.amazonaws.com/test/colombia.json";
         public async  Task<Dictionary<string, string[]>> getStates()
         {
-            string endpoint = "https://sigma-studios.s3-us-west-2.amazonaws.com/test/colombia.json";
             using (var client = new HttpClient())
             {
                 using (var response = await client.GetAsync($"{endpoint}"))

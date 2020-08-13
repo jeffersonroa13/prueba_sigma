@@ -34,13 +34,17 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1"><b>Departamento*</b></label>
-                                        <input type="text" class="form-control" id="state" aria-describedby="emailHelp">
+                                        <select type="text" class="form-control" id="state" onchange="getCitiesByState()">
+                                            <option disabled selected>Selecciona un departamento</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="exampleInputPassword1"><b>Ciudad*</b></label>
-                                        <input type="text" class="form-control" id="city">
+                                        <select type="text" class="form-control" id="city">
+                                            <option disabled selected>Selecciona una ciudad</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-12">
